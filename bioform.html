@@ -1,0 +1,98 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+    <link rel="stylesheet" href="./bio.css" />
+  </head>
+  <body>
+    <div class="container-sm">
+      <div class="row">
+        <h2>REGISTRATION FORM</h2>
+      </div>
+      <hr />
+      <form>
+        <div class="form-group">
+          <label><h5>Name</h5></label>
+          <input type="text" class="form-control" id="name" />
+        </div>
+        <br />
+        <div class="form-group">
+          <label><h5>Age</h5></label>
+          <input type="text" class="form-control" id="age" />
+        </div>
+        <br />
+        <div class="form-group">
+          <label><h5>Department</h5></label>
+          <input type="text" class="form-control" id="dept" />
+        </div>
+        <br />
+        <div class="form-group">
+          <label><h5>City</h5></label>
+          <input type="text" class="form-control" id="city" />
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            class="one"
+            type="radio"
+            name="gender"
+            id="one"
+            value="male"
+            checked
+          />
+          <label class="form-check-label" for="exampleRadios1">
+            <h5>Male</h5>
+          </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            class="one"
+            type="radio"
+            name="gender"
+            id="two"
+            value="female"
+          />
+          <label class="form-check-label" for="exampleRadios2">
+            <h5>Female</h5>
+          </label>
+        </div>
+        <br />
+
+        <div>
+          <button type="button" class="btn btn-warning" onclick="myfunction()">
+            submit
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      function myfunction() {
+        console.log("hai");
+        var name = document.getElementById("name").value;
+        var age = document.getElementById("age").value;
+        var dept = document.getElementById("dept").value;
+        var city = document.getElementById("city").value;
+        var gender1 = document.getElementById("one").value;
+        var gender2 = document.getElementById("two").value;
+        if (gender1 == male) {
+          var gender = "male";
+        }
+        if (gender2 == female) {
+          var gender = "female";
+        }
+        console.log(gender1);
+        var myjson = { name, age, dept, city, gender };
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://localhost:3000/save");
+        xhttp.setRequestHeader(
+          "Content-Type",
+          "application/json;charset=UTF-8"
+        );
+        xhttp.send(JSON.stringify(myjson));
+      }
+    </script>
+  </body>
+</html>

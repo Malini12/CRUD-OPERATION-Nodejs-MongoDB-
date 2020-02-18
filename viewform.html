@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.css"
+    />
+  </head>
+  <body>
+    <div class="container-sm">
+      <table style="width:100%" id="tab">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Dept</th>
+          <th>City</th>
+          <th>Gender</th>
+          <th>Hostal</th>
+        </tr>
+      </table>
+    </div>
+    <script>
+      var xhttp = new XMLHttpRequest();
+      xhttp.open("GET", "http://localhost:3000/view", true);
+      xhttp.send();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var obj = JSON.parse(this.responseText);
+          var n = obj.length;
+
+          console.log(obj);
+          var table1 = document.getElementsByTagName("table")[0];
+          var newrow = table1.insertRow(table1.rows.length);
+          for (var i = 0; i < n; i++) {
+            newrow.insertCell(0).innerHTML = obj[i].name;
+            newrow.insertCell(1).innerHTML = obj[i].age;
+            newrow.insertCell(2).innerHTML = obj[i].dept;
+            newrow.insertCell(3).innerHTML = obj[i].city;
+            newrow.insertCell(4).innerHTML = obj[i].gender;
+            newrow.insertCell(5).innerHTML = obj[i].hostal;
+          }
+        }
+      };
+    </script>
+  </body>
+</html>
